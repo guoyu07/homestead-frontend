@@ -1,0 +1,93 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+</head>
+  <body ng-app="hmsAngularApp">
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container" ng-view=""></div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+
+        <!-- build:js scripts/plugins.js -->
+        <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
+        <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js scripts/modules.js -->
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/CheckoutCtrl.js"></script>
+        <script src="scripts/services/roomDamageService.js"></script>
+        <script src="scripts/services/roomDamageResidentProvider.js"></script>
+        <!-- endbuild -->
+
+
+        <script type="text/javascript">
+          (function() {
+            angular.module('roomDamages')
+            .config(function(roomDamageBrokerProvider){
+                roomDamageBrokerProvider.setDamageTypes({"1":{"category":"Ceiling","description":"Light Cover- Cracked\/Missing","cost":"25"},"2":{"category":"Ceiling","description":"Tape residue","cost":"35"},"5":{"category":"Ceiling","description":"Tear\/Scratches","cost":"35"},"8":{"category":"Ceiling","description":"Tile replacement \/ holes","cost":"10"},"10":{"category":"Cleaning","description":"Bathroom\/Shower (suite-style buildings)","cost":"30"},"12":{"category":"Cleaning","description":"Carpet (Suite\/Apartment)","cost":"80"},"11":{"category":"Cleaning","description":"Carpet (Traditional Hall)","cost":"30"},"19":{"category":"Cleaning","description":"Entire Room (Traditional Hall)","cost":"50"},"9":{"category":"Cleaning","description":"Entire Suite\/Apartment","cost":"125"},"82":{"category":"Cleaning","description":"Furniture Removal","cost":"15"},"23":{"category":"Cleaning","description":"Housekeeping Labor Charges (per hour)","cost":"20"},"14":{"category":"Cleaning","description":"Microfridge","cost":"25"},"16":{"category":"Cleaning","description":"Microwave","cost":"20"},"17":{"category":"Cleaning","description":"Oven","cost":"30"},"18":{"category":"Cleaning","description":"Refrigerator","cost":"30"},"20":{"category":"Cleaning","description":"Sink (kitchen or bathroom)","cost":"25"},"15":{"category":"Cleaning","description":"Student Moving a Microfridge","cost":"25"},"21":{"category":"Cleaning","description":"Tile Floor","cost":"25"},"83":{"category":"Cleaning","description":"Trash Removal","cost":"25"},"22":{"category":"Cleaning","description":"Vacuum","cost":"25"},"25":{"category":"Closet","description":"Door - Broken\/Split\/Missing","cost":"125"},"26":{"category":"Closet","description":"Door - Remount","cost":"32"},"27":{"category":"Closet","description":"Paint","cost":"20"},"37":{"category":"Door","description":"Door Closer - Missing\/Disassembled","cost":"50"},"28":{"category":"Door","description":"Hinges","cost":"25"},"31":{"category":"Door","description":"Peep Hole - Missing\/damaged","cost":"10"},"32":{"category":"Door","description":"Replace - Broken\/scratches\/writing","cost":"150"},"34":{"category":"Door","description":"Scratches\/Holes","cost":"70"},"38":{"category":"Door","description":"Tape Residue (per side)","cost":"20"},"39":{"category":"Door","description":"Writing on Door","cost":"50"},"104":{"category":"DSL Equipment","description":"Modem\/Hub\/Power Adapters\/Cables (Justice)","cost":"10"},"40":{"category":"Floors","description":"Carpet - Holes\/replacement","cost":"0"},"41":{"category":"Floors","description":"Tile - Missing\/damaged","cost":"10"},"42":{"category":"Furnishings","description":"Air Conditioning Unit","cost":"10"},"45":{"category":"Furnishings","description":"Bed - Frame Damaged\/Reassemble\/Replace","cost":"25"},"60":{"category":"Furnishings","description":"Bed - Mattress - Clean\/Replace","cost":"0"},"49":{"category":"Furnishings","description":"Cabinet","cost":"25"},"50":{"category":"Furnishings","description":"Chair - Missing\/Cracked\/Refinish","cost":"25"},"55":{"category":"Furnishings","description":"Desk\/Dresser & Drawers","cost":"20"},"57":{"category":"Furnishings","description":"Desk\/Dresser - Tape Residue","cost":"10"},"65":{"category":"Furnishings","description":"Microfridge - Broken\/Missing Parts","cost":"10"},"58":{"category":"Furnishings","description":"Microwave - Broken\/Missing Parts","cost":"50"},"68":{"category":"Furnishings","description":"Mirror","cost":"10"},"77":{"category":"Furnishings","description":"Scratched \/ Stained \/ Carved","cost":"25"},"69":{"category":"Furnishings","description":"Shelves - Broken\/Scratched\/Missing","cost":"15"},"72":{"category":"Furnishings","description":"Shower Curtain - Missing\/Torn\/Hooks","cost":"20"},"74":{"category":"Furnishings","description":"Towel Bar - Dented\/Broken\/Missing","cost":"25"},"78":{"category":"Keys","description":"Apartment \/ Suite","cost":"45"},"80":{"category":"Keys","description":"App. Heights\/LLC","cost":"45"},"79":{"category":"Keys","description":"Traditional Residence Hall","cost":"45"},"94":{"category":"Walls","description":"Cracks\/Scratches\/Scuffs\/Pin holes","cost":"15"},"98":{"category":"Walls","description":"Hole (other than pin\/nail holes)","cost":"30"},"99":{"category":"Walls","description":"Outlet Cover - Damaged\/missing","cost":"15"},"100":{"category":"Walls","description":"Paint (per wall)","cost":"40"},"103":{"category":"Walls","description":"Tape residue (per wall)","cost":"10"},"84":{"category":"Window","description":"Blinds - Broken\/Missing Fins","cost":"20"},"88":{"category":"Window","description":"Glass - Broken\/Cracked","cost":"75"},"90":{"category":"Window","description":"Glass - Tape Residue","cost":"10"},"91":{"category":"Window","description":"Screen - Dirty\/Damaged\/Bent\/Replace\/Reinstall","cost":"20"}});
+            });
+          })();
+          (function() {
+              angular.module('roomDamages')
+              .config(function(roomDamageResidentProvider){
+                  roomDamageResidentProvider.setAssignment({id: 21345, studentId: 900325006, hallName: "Belk Hall", roomNumber: "234"});
+                  roomDamageResidentProvider.setResidents([{studentId: 900325006, name:"Jeremy Booker"}, {studentId: 900123456, name: "Jeff Tickle"}, {studentId:900654321, name: "Brian Brown"}]);
+                  roomDamageResidentProvider.setStudent({studentId: 900325006, name: "Jeremy Booker"});
+                  roomDamageResidentProvider.setCheckin({id: 6145});
+              });
+          })();
+
+        </script>
+</body>
+</html>
