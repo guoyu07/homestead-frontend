@@ -46,21 +46,30 @@ myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResid
     $scope.data.keyReturned = -1;       // -1=unset, 0=no, 1=yes
     $scope.data.properCheckout = -1;    // -1=unset, 0=no, 1=yes
 
-    // Key Return Validity
+    // This will let us show any errors on non-dirty fields on submit
+    // TODO: implement setDirty in Angular lol
+    $scope.triedSubmit = false;
+
     // TODO: Proper Directive
     var keyReturnValidity = function() {
-        console.log('eat me');
         $scope.checkout_form.keyCode.$setValidity('keyReturn',
-            $scope.data.keyReturned != 1 || ($scope.data.keyReturned == 1 && $scope.keyCode));
+            $scope.data.keyReturned != 1 || !!$scope.data.keyCode);
         $scope.checkout_form.keyReturned.$setValidity('keyReturn',
-            $scope.data.keyReturned == -1);
+            $scope.data.keyReturned != -1);
     };
     $scope.$watch('data.keyReturned', keyReturnValidity);
     $scope.$watch('data.keyCode', keyReturnValidity);
 
+    var properCheckoutValidity = function() {
+        $scope.checkout_form.properCheckout.$setValidity('properCheckout',
+            $scope.data.properCheckout != -1);
+    }
+    $scope.$watch('data.properCheckout', properCheckoutValidity);
+
     // Submit handler
     $scope.submitHandler = function ()
     {
+        $scope.triedSubmit = true;
         // For each new damage
         for(var i=0; i < $scope.newDamages.length; i++){
             var aResSelected = false;
@@ -77,6 +86,11 @@ myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResid
                 alert('Please select at least one student who is responsible for each damage.');
                 return;
             }
+        }
+
+        if(!$scope.checkout_form.$valid) {
+            alert('Cannot complete checkout because the form is incomplete.  Please check the form for errors.');
+            return;
         }
 
         $http.post('index.php?module=hms&action=CheckoutFormSubmit', {'bannerId': $scope.student.studentId, 'checkinId': $scope.checkin.id, 'keyCode': $scope.data.keyCode, 'keyReturned': $scope.data.keyReturned, 'newDamages': $scope.newDamages, 'properCheckout': $scope.data.properCheckout})
