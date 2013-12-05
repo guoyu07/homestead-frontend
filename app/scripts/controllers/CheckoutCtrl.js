@@ -43,8 +43,20 @@ myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResid
     // Initialize other data field
     $scope.data = {};
     $scope.data.keyCode = '';
-    $scope.data.keyNotReturned = '';
-    $scope.data.improperCheckout = '';
+    $scope.data.keyReturned = -1;       // -1=unset, 0=no, 1=yes
+    $scope.data.properCheckout = -1;    // -1=unset, 0=no, 1=yes
+
+    // Key Return Validity
+    // TODO: Proper Directive
+    var keyReturnValidity = function() {
+        console.log('eat me');
+        $scope.checkout_form.keyCode.$setValidity('keyReturn',
+            $scope.data.keyReturned != 1 || ($scope.data.keyReturned == 1 && $scope.keyCode));
+        $scope.checkout_form.keyReturned.$setValidity('keyReturn',
+            $scope.data.keyReturned == -1);
+    };
+    $scope.$watch('data.keyReturned', keyReturnValidity);
+    $scope.$watch('data.keyCode', keyReturnValidity);
 
     // Submit handler
     $scope.submitHandler = function ()
@@ -67,7 +79,7 @@ myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResid
             }
         }
 
-        $http.post('index.php?module=hms&action=CheckoutFormSubmit', {'bannerId': $scope.student.studentId, 'checkinId': $scope.checkin.id, 'keyCode': $scope.data.keyCode, 'keyNotReturned': $scope.data.keyNotReturned, 'newDamages': $scope.newDamages, 'improperCheckout': $scope.data.improperCheckout})
+        $http.post('index.php?module=hms&action=CheckoutFormSubmit', {'bannerId': $scope.student.studentId, 'checkinId': $scope.checkin.id, 'keyCode': $scope.data.keyCode, 'keyReturned': $scope.data.keyReturned, 'newDamages': $scope.newDamages, 'properCheckout': $scope.data.properCheckout})
             .success(function (data){
                 console.log('posted');
             });
