@@ -1,0 +1,21 @@
+<div style="margin: auto; text-align: center">
+  <h1>
+    {{room.hallName}} {{room.room_number}}
+  </h1>
+</div>
+<hr />
+<form class="phpws-form form-protected" id="damage-charge-form" name="damage-charge-form" novalidate>
+  <table>
+    <tr data-ng-repeat="damage in room.damages">
+      <td>{{damageTypes[damage.damage_type]}}</td>
+      <td>{{damage.side}}</td>
+      <td>{{damage.note}}</td>
+      <td>
+        <p data-ng-repeat="responsibility in damage.responsibilities">
+          {{responsibility.studentName}}
+          <input data-ng-model="responsibility.amount" type="number">
+        </p>
+      </td>
+    </tr>
+  </table>
+</form>
