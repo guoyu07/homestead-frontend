@@ -1,14 +1,15 @@
+'use strict';
+
 var myApp = angular.module('hmsAngularApp');
 
-myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResident', '$http', function ($scope, roomDamageBroker, roomDamageResident, $http) {
-"use strict";
+myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResident', 'roomDamageType', '$http', function ($scope, roomDamageBroker, roomDamageResident, roomDamageType, $http) {
     // Existing room damages, AJAX'd in
     roomDamageBroker.getDamages().then(function (response) {
         $scope.damages = response.data;
     });
 
     // Array of damage types/descriptions, loaded statically at page generation
-    $scope.dmgTypes = roomDamageBroker.getDamageTypes();
+    $scope.dmgTypes = roomDamageType.getDamageTypes();
 
     // Array of new damages being added to the room
     $scope.newDamages = [];
