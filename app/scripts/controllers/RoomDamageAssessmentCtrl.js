@@ -10,8 +10,12 @@ myApp.controller('RoomDamageAssessmentCtrl', ['$scope', 'roomDamageType', 'roomD
 	$scope.damageTypes = roomDamageType;
 
 	$scope.sumAmounts = function(responsibilities) {
+        if(!responsibilities){
+            return;
+        }
+
 		var acc = 0.0;
-		for(index in responsibilities) {
+		for(var index in responsibilities) {
 			if(!!responsibilities[index] && !!responsibilities[index].amount) {
 				acc += Number(responsibilities[index].amount);
 			}
@@ -24,8 +28,8 @@ myApp.controller('RoomDamageAssessmentCtrl', ['$scope', 'roomDamageType', 'roomD
 
 		var data = [];
 
-		for(di in room.damages) {
-			for(ri in room.damages[di].responsibilities) {
+		for(var di in room.damages) {
+			for(var ri in room.damages[di].responsibilities) {
 				data.push(room.damages[di].responsibilities[ri]);
 			}
 		}
@@ -43,7 +47,7 @@ myApp.controller('RoomDamageAssessmentCtrl', ['$scope', 'roomDamageType', 'roomD
 		var peeps = damage.responsibilities.length;
 		var each = $scope.damageTypes[damage.damage_type].cost / peeps;
 
-		for(index in damage.responsibilities) {
+		for(var index in damage.responsibilities) {
 			damage.responsibilities[index].amount = each.toFixed(2);
 		}
 	}
