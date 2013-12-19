@@ -93,9 +93,14 @@ myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResid
             return;
         }
 
-        $http.post('index.php?module=hms&action=CheckoutFormSubmit', {'bannerId': $scope.student.studentId, 'checkinId': $scope.checkin.id, 'keyCode': $scope.data.keyCode, 'keyReturned': $scope.data.keyReturned, 'newDamages': $scope.newDamages, 'properCheckout': $scope.data.properCheckout})
-            .success(function (data){
-                console.log('posted');
+        var baseLocation = roomDamageBroker.getBaseLocation();
+
+        $http.post(baseLocation + '?module=hms&action=CheckoutFormSubmit&ajax=true', {'bannerId': $scope.student.studentId, 'checkinId': $scope.checkin.id, 'keyCode': $scope.data.keyCode, 'keyReturned': $scope.data.keyReturned, 'newDamages': $scope.newDamages, 'properCheckout': $scope.data.properCheckout})
+            .success(function (data, status, headers, config){
+                window.location = headers('location');
+            })
+            .error(function(data, status, headers, config){
+                alert('Something went wrong while saving this checkout. Please contact the Housing Assignments Office.');
             });
     }
     
