@@ -10,6 +10,11 @@ angular.module('roomDamages')
             damageTypes = dmgTypes;
         }
 
+        this.getDamageTypes = function()
+        {
+            return damageTypes;
+        }
+
         this.$get = function()
         {
        		return damageTypes;

@@ -9,7 +9,7 @@ myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResid
     });
 
     // Array of damage types/descriptions, loaded statically at page generation
-    $scope.dmgTypes = roomDamageType.getDamageTypes();
+    $scope.dmgTypes = roomDamageType;
 
     // Array of new damages being added to the room
     $scope.newDamages = [];

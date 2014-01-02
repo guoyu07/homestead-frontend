@@ -12,8 +12,10 @@ angular.module('hmsAngularApp', [
 
     $routeProvider
       .when('/', {
-        templateUrl: 'views/damage-charge.html',
-        controller: 'RoomDamageAssessmentCtrl'
+        //templateUrl: 'views/damage-charge.html',
+        //controller: 'RoomDamageAssessmentCtrl'
+        templateUrl: 'views/checkout.html',
+        controller: 'CheckoutCtrl'
       })
       .otherwise({
         redirectTo: '/'
