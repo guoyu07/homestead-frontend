@@ -125,6 +125,10 @@
         <label><input type="radio" name="properCheckout" data-ng-model="data.properCheckout" id="properCheckoutYes" title="Proper Check-out" value="1"> Proper Check-out</label><br>
         <label><input type="radio" name="properCheckout" data-ng-model="data.properCheckout" id="properCheckoutNo" title="Improper Check-out" value="0"> Improper Check-out</label><br>
         <span class="error" data-ng-show="(triedSubmit || checkout_form.properCheckout.$dirty) && !checkout_form.properCheckout.$valid">Specify whether or not the checkout process was proper.</span>
+        <div class="form-group">
+          <label for="improperCheckoutNote">Improper Checkout Notes:</label>
+          <textarea id="improperCheckoutNote" autocomplete="off" class="form-control" data-ng-model="data.improperCheckoutNote" data-ng-disabled="data.properCheckout > 0 || data.properCheckout == -1" placeholder="Give some detail about what happened and why the checkout was improper"></textarea>
+        </div>
         
         <hr />
 

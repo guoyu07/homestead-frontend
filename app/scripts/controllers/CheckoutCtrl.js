@@ -46,6 +46,7 @@ myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResid
     $scope.data.keyCode = '';
     $scope.data.keyReturned = -1;       // -1=unset, 0=no, 1=yes
     $scope.data.properCheckout = -1;    // -1=unset, 0=no, 1=yes
+    $scope.data.improperCheckoutNote = '';
 
     // This will let us show any errors on non-dirty fields on submit
     // TODO: implement setDirty in Angular lol
@@ -96,7 +97,7 @@ myApp.controller('CheckoutCtrl', ['$scope', 'roomDamageBroker', 'roomDamageResid
 
         var baseLocation = roomDamageBroker.getBaseLocation();
 
-        $http.post(baseLocation + '?module=hms&action=CheckoutFormSubmit&ajax=true', {'bannerId': $scope.student.studentId, 'checkinId': $scope.checkin.id, 'keyCode': $scope.data.keyCode, 'keyReturned': $scope.data.keyReturned, 'newDamages': $scope.newDamages, 'properCheckout': $scope.data.properCheckout})
+        $http.post(baseLocation + '?module=hms&action=CheckoutFormSubmit&ajax=true', {'bannerId': $scope.student.studentId, 'checkinId': $scope.checkin.id, 'keyCode': $scope.data.keyCode, 'keyReturned': $scope.data.keyReturned, 'newDamages': $scope.newDamages, 'properCheckout': $scope.data.properCheckout, 'improperCheckoutNote': $scope.data.improperCheckoutNote})
             .success(function (data, status, headers, config){
                 window.location = headers('location');
             })
